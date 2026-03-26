@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from neo4j_graph_migrations import helpers
+from graphver import helpers
 
 
 class TestBulkCreateNodes:

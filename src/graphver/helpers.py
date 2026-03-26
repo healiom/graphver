@@ -109,7 +109,7 @@ def bulk_delete_nodes(
     If snapshot_path provided, captures full state before deleting.
     """
     if snapshot_path:
-        from neo4j_graph_migrations.snapshot import snapshot_nodes
+        from graphver.snapshot import snapshot_nodes
 
         snap = snapshot_nodes(session, label, match_on, values)
         snapshot_path.parent.mkdir(parents=True, exist_ok=True)
@@ -187,7 +187,7 @@ def merge_nodes(
         params[f"{k}_tgt"] = v
 
     if snapshot_path:
-        from neo4j_graph_migrations.snapshot import snapshot_nodes
+        from graphver.snapshot import snapshot_nodes
 
         match_key = list(source_match.keys())[0]
         snap = snapshot_nodes(

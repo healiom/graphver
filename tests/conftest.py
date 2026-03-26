@@ -1,4 +1,4 @@
-"""Test fixtures for neo4j-graph-migrations."""
+"""Test fixtures for graphver."""
 
 from __future__ import annotations
 

@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "neo4j-graph-migrations"
+name = "graphver"
 version = "0.1.0"
 description = "Alembic-style migration tool for Neo4j — the only Python tool with rollback support"
 readme = "README.md"
@@ -38,12 +38,12 @@ test = [
 ]
 
 [project.scripts]
-neo4j-migrate = "neo4j_graph_migrations.runner:main"
+graphver = "graphver.runner:main"
 
 [project.urls]
-Homepage = "https://github.com/healiom/neo4j-graph-migrations"
-Repository = "https://github.com/healiom/neo4j-graph-migrations"
-Issues = "https://github.com/healiom/neo4j-graph-migrations/issues"
+Homepage = "https://github.com/healiom/graphver"
+Repository = "https://github.com/healiom/graphver"
+Issues = "https://github.com/healiom/graphver/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/neo4j_graph_migrations"]
+packages = ["src/graphver"]

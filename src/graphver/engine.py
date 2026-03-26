@@ -15,7 +15,7 @@ from typing import Any
 
 from neo4j import Driver, Session
 
-from neo4j_graph_migrations import helpers as _helpers
+from graphver import helpers as _helpers
 
 logger = logging.getLogger(__name__)
 

@@ -1,11 +1,11 @@
 """CLI runner for Neo4j graph migrations.
 
 Usage:
-    neo4j-migrate status
-    neo4j-migrate apply [--target REV]
-    neo4j-migrate rollback [--steps N]
-    neo4j-migrate history
-    neo4j-migrate new SLUG [--description TEXT]
+    graphver status
+    graphver apply [--target REV]
+    graphver rollback [--steps N]
+    graphver history
+    graphver new SLUG [--description TEXT]
 """
 
 from __future__ import annotations
@@ -17,7 +17,7 @@ from pathlib import Path
 import click
 from neo4j import GraphDatabase
 
-from neo4j_graph_migrations.engine import (
+from graphver.engine import (
     MigrationConfig,
     apply_migrations,
     generate_migration_file,
@@ -63,7 +63,7 @@ def cli(
     versions_dir: str | None,
     snapshots_dir: str | None,
 ) -> None:
-    """neo4j-migrate — Alembic-style migrations for Neo4j graphs."""
+    """graphver — Alembic-style migrations for Neo4j graphs."""
     ctx.ensure_object(dict)
 
     resolved_uri = uri or os.environ.get("NEO4J_URI", "bolt://localhost:7687")
@@ -184,7 +184,7 @@ def new(ctx: click.Context, slug: str, description: str, source: str, author: st
         config=ctx.obj["config"],
     )
     click.echo(f"Created: {path}")
-    click.echo("Edit upgrade() and downgrade(), then run: neo4j-migrate apply")
+    click.echo("Edit upgrade() and downgrade(), then run: graphver apply")
 
 
 def main() -> None:

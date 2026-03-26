@@ -6,7 +6,7 @@ import textwrap
 
 import pytest
 
-from neo4j_graph_migrations.engine import (
+from graphver.engine import (
     MigrationConfig,
     apply_migrations,
     get_status,

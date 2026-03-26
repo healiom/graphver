@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from neo4j_graph_migrations import helpers
-from neo4j_graph_migrations.snapshot import restore_from_snapshot, snapshot_nodes
+from graphver import helpers
+from graphver.snapshot import restore_from_snapshot, snapshot_nodes
 
 
 class TestSnapshotRoundTrip:

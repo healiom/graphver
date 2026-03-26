@@ -1,4 +1,4 @@
-# neo4j-graph-migrations
+# graphver
 
 **Alembic-style migration tool for Neo4j** — the only Python tool with rollback support.
 
@@ -12,12 +12,12 @@ Forward and backward migrations with snapshot-based reversibility for destructiv
 | neo4j-python-migrations | Python | No | Yes |
 | Morpheus | TypeScript | No | No |
 | Liquigraph | Java | EOL | No |
-| **neo4j-graph-migrations** | **Python** | **Yes** | **Yes** |
+| **graphver** | **Python** | **Yes** | **Yes** |
 
 ## Install
 
 ```bash
-pip install neo4j-graph-migrations
+pip install graphver
 ```
 
 ## Quick Start
@@ -27,17 +27,17 @@ pip install neo4j-graph-migrations
 mkdir -p migrations/versions
 
 # Create your first migration
-neo4j-migrate new add_user_nodes -d "Add User nodes with email constraint"
+graphver new add_user_nodes -d "Add User nodes with email constraint"
 
 # Edit migrations/versions/2026_03_26_0001_add_user_nodes.py
 # Then apply:
-neo4j-migrate apply
+graphver apply
 
 # Check status
-neo4j-migrate status
+graphver status
 
 # Roll back if needed
-neo4j-migrate rollback
+graphver rollback
 ```
 
 ## Writing Migrations
@@ -108,26 +108,26 @@ def upgrade(session, helpers):
         snapshot_path=Path("migrations/snapshots/0003.json"))
 
 def downgrade(session, helpers):
-    from neo4j_graph_migrations.snapshot import restore_from_snapshot
+    from graphver.snapshot import restore_from_snapshot
     restore_from_snapshot(session, Path("migrations/snapshots/0003.json"))
 ```
 
 ## CLI Reference
 
 ```bash
-neo4j-migrate status                    # Show head + pending migrations
-neo4j-migrate apply [--target REV]      # Apply all pending (or up to target)
-neo4j-migrate rollback [--steps N]      # Roll back N migrations (default: 1)
-neo4j-migrate history                   # Full audit trail with timestamps
-neo4j-migrate new SLUG [-d DESC]        # Generate new migration file
+graphver status                    # Show head + pending migrations
+graphver apply [--target REV]      # Apply all pending (or up to target)
+graphver rollback [--steps N]      # Roll back N migrations (default: 1)
+graphver history                   # Full audit trail with timestamps
+graphver new SLUG [-d DESC]        # Generate new migration file
 ```
 
 ### Connection Options
 
 ```bash
-neo4j-migrate --uri bolt://localhost:7687 --user neo4j --password secret status
-neo4j-migrate --database my_graph apply
-neo4j-migrate --versions-dir ./my_migrations/versions status
+graphver --uri bolt://localhost:7687 --user neo4j --password secret status
+graphver --database my_graph apply
+graphver --versions-dir ./my_migrations/versions status
 ```
 
 Or use environment variables:
@@ -155,15 +155,15 @@ Each node stores: revision, applied_at, source, author, title.
 Target a specific Neo4j database:
 
 ```bash
-neo4j-migrate --database patients apply
-neo4j-migrate --database knowledge_graph rollback
+graphver --database patients apply
+graphver --database knowledge_graph rollback
 ```
 
 ## Programmatic Usage
 
 ```python
 from neo4j import GraphDatabase
-from neo4j_graph_migrations.engine import (
+from graphver.engine import (
     MigrationConfig,
     apply_migrations,
     rollback_migrations,
